@@ -9,6 +9,5 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %p.notice notice 
-    %p.alert alert
+    = link_to 'ログアウト', destroy_user_session_path, data: { method: 'delete'}
     = yield
