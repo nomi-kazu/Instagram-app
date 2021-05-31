@@ -2,6 +2,14 @@
 
 module UserDecorator
   def display_name
-    self.email.split('@').first
+    profile&.name || self.email.split('@').first
+  end
+
+  def avatar_image
+    if profile&.avatar&.attached?
+      profile.avatar
+    else
+      'Ellipse.png'
+    end
   end
 end

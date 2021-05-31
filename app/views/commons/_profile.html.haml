@@ -1,11 +1,19 @@
 .container.profilePage
   .profilePage_user
     .profilePage_user_image
-      = image_tag 'Ellipse.png'
+      = label_tag :avatar do
+        - if user.avatar_image
+          = image_tag user.avatar_image, class: 'avatar'
+          = file_field_tag :avatar, class: 'uploader', style: 'display:none'
+        - else
+          = image_tag 'Ellipse.png', class: 'avatar'
+          = file_field_tag :avatar, class: 'uploader', style: 'display:none'          
     .profilePage_user_basicInfo
       .profilePage_user_name
         .profilePage_user_displayName
-          #{@user.display_name}
+          #{user.display_name}
         .profilePage_user_actionButton
-          - if @user == current_user
-            = link_to 'Edit', '#'
+          - if user == current_user
+            = link_to 'Edit', edit_profile_path
+
+= javascript_pack_tag 'profile'
